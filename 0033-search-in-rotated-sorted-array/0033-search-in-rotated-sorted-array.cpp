@@ -23,9 +23,9 @@ public:
             
             if(target<nums[mid])
             {  
-                 if(nums[mid]>=nums[start])
+                 if(nums[mid]>=nums[0])
                  {
-                     if(target>=nums[start])
+                     if(target>nums[0])
                          end=mid-1;
                      else
                          start=mid+1;
