@@ -17,15 +17,13 @@ public:
             return res;
         queue<TreeNode*>q;
         q.push(root);
-       
+        q.push(NULL);
         
-        while(!q.empty())
+        while(!q.empty()&&q.front())
         {   vector<int> temp;
-            int size=q.size();
-            int i=0;
-            while(i<size)
+            while(q.front())
             {
-                TreeNode* elm =q.front();
+               TreeNode* elm =q.front();
                 q.pop();
                 if(elm->left)
                 {
@@ -35,13 +33,12 @@ public:
                 {
                     q.push(elm->right);
                 }
-                i++;
                 temp.push_back(elm->val);
             }
-           
+           q.push(NULL);
            res.push_back(temp);
            temp.clear();
-    
+            q.pop();
         }
         return res;
     }
