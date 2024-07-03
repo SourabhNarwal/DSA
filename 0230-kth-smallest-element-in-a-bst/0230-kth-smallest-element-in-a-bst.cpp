@@ -20,6 +20,8 @@ class Solution {
         {
             ans=root->val;
         }
+        if(x>k)
+            return;
         inorder(root->right,k,x,ans);
         
     }
