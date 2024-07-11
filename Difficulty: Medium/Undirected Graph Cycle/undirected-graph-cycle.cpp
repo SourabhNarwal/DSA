@@ -5,35 +5,27 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
     
-    bool inthiscomponent(int src,unordered_map<int,bool>&visited,vector<int> adj[])
+    bool dfs(int src,int parent,unordered_map<int,bool>&visited,vector<int> adj[])
     {
-        queue<pair<int,int>>q;
-        q.push({src,-1});
         visited[src]=true;
-        while(!q.empty())
+        for(auto i:adj[src])
         {
-            auto node=q.front();
-            int vertex=node.first;
-            
-            int parent=node.second;
-            for(auto i:adj[vertex])
-            {   if(i==parent)
+            if(visited[i])
             {
-                int nothing;
+                if(i!=parent)
+                 return true;
             }
-            else if(visited[i])
-            {
-                return true;
-            }
-             else
-                {visited[i]=true;
-                  q.push({i,vertex});
-                }
-                
-            }
-            q.pop();
+            else
+             {  visited[i]=true;
+                 if(dfs(i,src,visited,adj))
+                 {
+                     return true;
+                 }
+                 
+             }
         }
         return false;
+        
     }
   public:
     // Function to detect cycle in an undirected graph.
@@ -45,7 +37,7 @@ class Solution {
         {
             if(!visited[i])
             {
-               if( inthiscomponent(i,visited,adj))
+               if( dfs(i,-1,visited,adj))
                {
                    return true;
                }
