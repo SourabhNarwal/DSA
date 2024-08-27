@@ -11,16 +11,14 @@ class Solution {
         int right = 1e9;
         int down=1e9;
         
-        if(col<n)
-        {
+       
+        
             right=grid[row][col]+minsum(row,col+1,grid,m,n,dp);
-        }
         
-        if(row<m)
-        {
+        
+        
             down=grid[row][col]+minsum(row+1,col,grid,m,n,dp);
-        }
-        
+       
         return dp[row][col]= min(right,down);
     }
 public:
